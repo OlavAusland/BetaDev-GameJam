@@ -8,6 +8,9 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Animator), typeof(PlayerCombat), typeof(PlayerMovement))]
 public class PlayerManager : MonoBehaviour
 {
+    public float invulnerableTime = 3f;
+    [SerializeField] private bool _invulnerable = false;
+    
     private float MaxHealth = 100;
     private float MaxStamina = 100;
     [Range(0, 100)]
@@ -25,16 +28,15 @@ public class PlayerManager : MonoBehaviour
         {
             if ((value - health) > 0)
             {
-                
-            }else if ((value - health) < 0)
+                health = Mathf.Max(0, (int)Mathf.Min(value, MaxHealth));
+            }else if ((value - health) < 0 && !_invulnerable)
             {
                 StartCoroutine(TakeDamage(0.3f));
                 _animator.SetTrigger("Hit");
+                health = Mathf.Max(0, (int)Mathf.Min(value, MaxHealth));
             }
 
             healthBar.fillAmount = (value / MaxHealth);
-
-            health = Mathf.Max(0, (int)Mathf.Min(value, MaxHealth));
         }
     }
 
@@ -76,10 +78,18 @@ public class PlayerManager : MonoBehaviour
     
     private IEnumerator TakeDamage(float duration)
     {
+        StartCoroutine(OnInvulnerable());
         pc.weaponTransform.gameObject.SetActive(false);
         _sr.color = new Color(_sr.color.r, _sr.color.g, _sr.color.b, 0.5f);
         yield return new WaitForSeconds(duration);
         _sr.color = new Color(_sr.color.r, _sr.color.g, _sr.color.b, 1);
         pc.weaponTransform.gameObject.SetActive(true);
+    }
+
+    private IEnumerator OnInvulnerable()
+    {
+        _invulnerable = true;
+        yield return new WaitForSeconds(invulnerableTime);
+        _invulnerable = false;
     }
 }

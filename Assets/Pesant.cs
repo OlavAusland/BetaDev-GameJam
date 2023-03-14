@@ -62,6 +62,11 @@ public class Pesant : MonoBehaviour
             }
         }
     }
+    
+    protected void Move()
+    {
+        
+    }
 
     private void OnDrawGizmos()
     {

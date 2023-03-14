@@ -36,8 +36,10 @@ public class PlayerCombat : MonoBehaviour
 
             foreach (var weaponHand in value.hands)
             {
-                var hand = Instantiate(new GameObject(), 
-                    weaponTransform.position + (Vector3)weaponHand.offset, Quaternion.identity, weaponTransform.transform);
+                var hand = new GameObject();
+                hand.transform.position = weaponTransform.position + (Vector3)weaponHand.offset;
+                hand.transform.SetParent(weaponTransform);
+                
                 hand.AddComponent<SpriteRenderer>();
                 hand.GetComponent<SpriteRenderer>().sprite = weaponHand.hand;
                 hand.GetComponent<SpriteRenderer>().sortingOrder = 2;
