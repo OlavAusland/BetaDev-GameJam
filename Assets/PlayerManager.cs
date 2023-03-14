@@ -82,5 +82,4 @@ public class PlayerManager : MonoBehaviour
         _sr.color = new Color(_sr.color.r, _sr.color.g, _sr.color.b, 1);
         pc.weaponTransform.gameObject.SetActive(true);
     }
-    
 }

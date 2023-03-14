@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pesant : MonoBehaviour
 {
-    [SerializeField] private int MaxHealth = 100;
+    [SerializeField] private GameManager gm;
+    [SerializeField] private float MaxHealth = 100;
     [SerializeField] private int health = 100;
 
     public int Health
@@ -16,20 +18,33 @@ public class Pesant : MonoBehaviour
             if (value <= 0)
             {
                 _animator.SetBool("Dead", true);
-                this.enabled = false;
+                Destroy(this);
             }
+            
+            healthBar.fillAmount = (value / MaxHealth);
             
             health = Mathf.Max(0, (int)Mathf.Min(value, MaxHealth));
         }
     }
     
     private int damage = 10;
+    public Image healthBar;
     [SerializeField] private SpriteRenderer _sr;
     [SerializeField] private Animator _animator;
     [SerializeField] private Vector2 _meleeOffset;
     [SerializeField] private float _meleeRadius;
+
+    private void Start()
+    {
+        if (gm == null) { gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>(); }
+        healthBar = Instantiate(
+            Resources.Load<GameObject>("UI/Health"), gm.worldCanvas)
+            .transform.GetChild(0).GetComponent<Image>();
+    }
+    
     private void Update()
     {
+        healthBar.transform.parent.position = transform.position + new Vector3(0, 0.25f, 0);
         if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Melee"))
         {
             RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position + new Vector3((_meleeOffset.x * (_sr.flipX ? -1 : 1)), _meleeOffset.y , 0), _meleeRadius, transform.forward);
@@ -51,5 +66,11 @@ public class Pesant : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position + new Vector3((_meleeOffset.x * (_sr.flipX ? -1 : 1)), _meleeOffset.y , 0), _meleeRadius);
+    }
+    
+    private void OnDestroy()
+    {
+        if (healthBar == null) { return;}
+        Destroy(healthBar.transform.parent.gameObject);
     }
 }

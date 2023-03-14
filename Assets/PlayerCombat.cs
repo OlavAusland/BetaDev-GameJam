@@ -21,10 +21,11 @@ public class PlayerCombat : MonoBehaviour
         get { return weapon;}
         set
         {
+            weapon = value;
             weaponTransform.eulerAngles = Vector3.zero;
+            weaponTransform.localScale = new Vector3(1, 1, 1);
             foreach(Transform child in weaponTransform)
                 Destroy(child.gameObject);
-            weapon = value;
             if (value is null)
             {
                 weaponSprite.sprite = null;
@@ -33,16 +34,15 @@ public class PlayerCombat : MonoBehaviour
                 return;
             }
 
-            foreach (var weaponHand in weapon.hands)
+            foreach (var weaponHand in value.hands)
             {
                 var hand = Instantiate(new GameObject(), 
-                    weaponTransform.position + (Vector3)weaponHand.offset, Quaternion.identity, weaponTransform);
+                    weaponTransform.position + (Vector3)weaponHand.offset, Quaternion.identity, weaponTransform.transform);
                 hand.AddComponent<SpriteRenderer>();
                 hand.GetComponent<SpriteRenderer>().sprite = weaponHand.hand;
                 hand.GetComponent<SpriteRenderer>().sortingOrder = 2;
             }
-                
-                
+
             pm._animator.SetBool("WeaponEquipped", true);
             weaponSprite.sprite = weapon.icon;
         }
