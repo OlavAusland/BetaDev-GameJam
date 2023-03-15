@@ -17,5 +17,11 @@ public class Weapon : Item
     public List<WeaponHand> hands;
     
     public Projectile projectile;
-    public virtual void Use(){}
+
+    public virtual void Use(Transform origin)
+    {
+        var pm = Instantiate(Resources.Load<GameObject>("Projectile"), origin.position, Quaternion.identity)
+            .GetComponent<ProjectileManager>();
+        pm.projectile = projectile;
+    }
 }

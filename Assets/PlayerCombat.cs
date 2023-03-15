@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -13,8 +14,9 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private float _meleeRadius = 0.25f;
     [SerializeField] private Vector2 _meleeOffset = new Vector2(0.3f, 0.4f);
-    
+
     [Space(20)] [Header("Range")] 
+    [SerializeField] private KeyCode rangeAttack = KeyCode.Mouse0;
     [SerializeField] private Weapon weapon;
     public Weapon Weapon
     {
@@ -96,8 +98,8 @@ public class PlayerCombat : MonoBehaviour
 
     private void RangedAttack()
     {
-
-        Weapon.Use();
+        if(Input.GetKeyDown(rangeAttack))
+            Weapon.Use(weaponTransform);
     }
 
     private Vector2 Direction()

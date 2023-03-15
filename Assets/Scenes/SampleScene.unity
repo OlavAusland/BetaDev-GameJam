@@ -952,7 +952,7 @@ GameObject:
   - component: {fileID: 674889254}
   m_Layer: 0
   m_Name: Pesant
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3093,6 +3093,7 @@ MonoBehaviour:
     m_Bits: 0
   _meleeRadius: 0.25
   _meleeOffset: {x: 0.3, y: 0.4}
+  rangeAttack: 323
   weapon: {fileID: 0}
   weaponSprite: {fileID: 369215224}
   weaponTransform: {fileID: 369215223}
@@ -3108,6 +3109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed6a4cf6c93d6d4897f6a46ac8ae25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invulnerableTime: 1
+  _invulnerable: 0
   health: 100
   stamina: 100
   cam: {fileID: 519420031}
@@ -7932,3 +7935,60 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1001 &4961579141242413026
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4417796910871494267, guid: 7e31f01af27a46e45ad6d5f25d268740, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417796910871494267, guid: 7e31f01af27a46e45ad6d5f25d268740, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417796910871494267, guid: 7e31f01af27a46e45ad6d5f25d268740, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417796910871494267, guid: 7e31f01af27a46e45ad6d5f25d268740, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417796910871494267, guid: 7e31f01af27a46e45ad6d5f25d268740, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417796910871494267, guid: 7e31f01af27a46e45ad6d5f25d268740, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417796910871494267, guid: 7e31f01af27a46e45ad6d5f25d268740, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417796910871494267, guid: 7e31f01af27a46e45ad6d5f25d268740, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417796910871494267, guid: 7e31f01af27a46e45ad6d5f25d268740, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417796910871494267, guid: 7e31f01af27a46e45ad6d5f25d268740, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417796910871494267, guid: 7e31f01af27a46e45ad6d5f25d268740, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941903872208782755, guid: 7e31f01af27a46e45ad6d5f25d268740, type: 3}
+      propertyPath: m_Name
+      value: Projectile
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7e31f01af27a46e45ad6d5f25d268740, type: 3}

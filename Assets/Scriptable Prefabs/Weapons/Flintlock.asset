@@ -18,4 +18,4 @@ MonoBehaviour:
   hands:
   - hand: {fileID: 1917662925, guid: 21ea1729674d86243ae4db0c5e4ac4aa, type: 3}
     offset: {x: 0, y: 0}
-  projectile: {fileID: 0}
+  projectile: {fileID: 11400000, guid: 17bc4146992f3114e80894eb5cb5103c, type: 2}
