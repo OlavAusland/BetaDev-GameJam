@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 
 public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    private GameObject draggablePreview;
     [SerializeField] private Item selectedItem = null;
     private bool isDragging = false;
 
@@ -17,7 +18,8 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     {
         if (!isDragging){return;}
 
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition = Input.mousePosition;
+        draggablePreview.transform.position = mousePosition;
         Debug.Log("Dragging: " + selectedItem.name);
         
         
@@ -30,6 +32,11 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         var itemSlot = eventData.pointerEnter.transform.GetComponent<ItemSlot>();
         if (itemSlot == null || !itemSlot.Item){return;}
 
+        draggablePreview = Instantiate<GameObject>(Resources.Load<GameObject>("UI/Draggable Preview"), 
+            mousePosition, Quaternion.identity, transform.parent);
+        draggablePreview.GetComponent<Image>().sprite = itemSlot.Item.icon;
+        
+        
         selectedItem = itemSlot.Item;
         itemSlot.Item = null;
         
@@ -53,6 +60,7 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             itemSlot.Item = selectedItem;
         }
 
+        Destroy(draggablePreview);
         selectedItem = null;
         isDragging = false;
     }
