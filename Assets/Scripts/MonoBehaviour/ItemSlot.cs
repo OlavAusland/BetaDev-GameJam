@@ -28,6 +28,9 @@ public class ItemSlot : MonoBehaviour
             preview.sprite = item.icon;
         }   
     }
+
+    public bool IsOccupied => Item != null;
+
     public Image preview;
 
     private void Start(){ Item = item;}

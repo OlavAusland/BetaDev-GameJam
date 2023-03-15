@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Pesant : MonoBehaviour
 {
     [SerializeField] private GameManager gm;
@@ -19,6 +20,11 @@ public class Pesant : MonoBehaviour
             {
                 _animator.SetBool("Dead", true);
                 Destroy(this);
+            }
+            
+            if ((value - health) < 0)
+            {
+                Instantiate(Resources.Load<GameObject>("Effects/Blood"), transform.position, Quaternion.identity);
             }
             
             healthBar.fillAmount = (value / MaxHealth);
