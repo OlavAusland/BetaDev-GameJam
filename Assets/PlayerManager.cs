@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -28,6 +29,7 @@ public class PlayerManager : MonoBehaviour
         {
             if ((value - health) > 0)
             {
+                Instantiate(Resources.Load<GameObject>("Effects/Heal"), transform.position, Quaternion.identity, transform);
                 health = Mathf.Max(0, (int)Mathf.Min(value, MaxHealth));
             }else if ((value - health) < 0 && !_invulnerable)
             {
@@ -91,5 +93,10 @@ public class PlayerManager : MonoBehaviour
         _invulnerable = true;
         yield return new WaitForSeconds(invulnerableTime);
         _invulnerable = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, (Vector2)transform.position + Utilities.MouseDirection(transform));
     }
 }

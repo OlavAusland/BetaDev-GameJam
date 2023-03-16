@@ -10,4 +10,7 @@ public static class Utilities
         Vector2 direction = (mousePosition - (Vector2)origin.position).normalized;
         return direction;
     }
+
+    public static Vector3 Direction(Vector3 a, Vector3 b) { return (a - b).normalized; }
+    
 }

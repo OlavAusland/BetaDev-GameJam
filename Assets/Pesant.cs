@@ -63,7 +63,6 @@ public class Pesant : MonoBehaviour
                 {
                     _animator.SetTrigger("Melee");
                     player.Health -= damage;
-
                 }
             }
         }
@@ -81,6 +80,7 @@ public class Pesant : MonoBehaviour
     
     private void OnDestroy()
     {
+        Destroy(GetComponent<CircleCollider2D>());
         if (healthBar == null) { return;}
         Destroy(healthBar.transform.parent.gameObject);
     }

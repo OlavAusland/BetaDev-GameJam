@@ -13,10 +13,14 @@ public class PlayerInventory : MonoBehaviour
     {
        if(Input.GetKeyDown(KeyCode.Alpha1)) 
            SelectItem(0);
-       if(Input.GetKeyDown(KeyCode.Alpha2)) 
+       else if(Input.GetKeyDown(KeyCode.Alpha2)) 
            SelectItem(1);
-       if(Input.GetKeyDown(KeyCode.Alpha3)) 
+       else if(Input.GetKeyDown(KeyCode.Alpha3)) 
            SelectItem(2);
+       else if(Input.GetKeyDown(KeyCode.Alpha4)) 
+           SelectItem(3);
+       else if(Input.GetKeyDown(KeyCode.Alpha5)) 
+           SelectItem(4);
     }
     
     private void SelectItem(int index)

@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 public class PlayerMovement : MonoBehaviour
 {
     public PlayerManager pm;
-    [SerializeField] private Rigidbody2D _rb;
+    public Rigidbody2D _rb;
     [SerializeField] private Vector2 _velocity;
     public float speed;
     public float runMultiplier = 1.2f; // 20percent
