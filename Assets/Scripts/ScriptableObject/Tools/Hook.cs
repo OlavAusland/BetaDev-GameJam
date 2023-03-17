@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Tools/Hook")]
-public class Hook : Weapon
+public class Hook : Tool
 {
     private GameObject prefab => Resources.Load<GameObject>("Weapons/Hook");
     

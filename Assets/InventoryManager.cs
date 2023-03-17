@@ -10,6 +10,7 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 {
     private GameObject draggablePreview;
     [SerializeField] private Item selectedItem = null;
+    [SerializeField] private ItemSlot previousItemSlot = null;
     private bool isDragging = false;
 
     private Vector2 mousePosition;
@@ -37,6 +38,7 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         draggablePreview.GetComponent<Image>().sprite = itemSlot.Item.icon;
         
         
+        previousItemSlot = itemSlot;
         selectedItem = itemSlot.Item;
         itemSlot.Item = null;
         
@@ -47,20 +49,31 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     {
         if (eventData.pointerEnter == null)
         {
-            selectedItem = null;
-            isDragging = false;
-            return;
+            var worldPoint = Camera.main.ScreenToWorldPoint(mousePosition);
+            var itemInfo = Instantiate(Resources.Load<GameObject>("Item"),
+                new Vector3(worldPoint.x, worldPoint.y, 0), 
+                Quaternion.identity).GetComponent<ItemInformation>();
+            itemInfo.item = selectedItem;
+        }else {
+            var itemSlot = eventData.pointerEnter.transform.GetComponent<ItemSlot>();
+            if (itemSlot != null)
+            {
+                if (itemSlot.Item == null)
+                {
+                    itemSlot.Item = selectedItem;
+                }
+                else
+                {
+                    var temp = itemSlot.Item;
+                    itemSlot.Item = selectedItem;
+                    previousItemSlot.Item = temp;
+                }
+            }
         }
 
-        var itemSlot = eventData.pointerEnter.transform.GetComponent<ItemSlot>();
-        if (itemSlot == null){return;}
-        
-        if (itemSlot.Item == null)
-        {
-            itemSlot.Item = selectedItem;
-        }
 
         Destroy(draggablePreview);
+        previousItemSlot = null;
         selectedItem = null;
         isDragging = false;
     }

@@ -5,22 +5,13 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "Default", menuName = "Weapons/Default")]
-public class Weapon : Item
+public class Weapon : Tool
 {
-    [System.Serializable]
-    public struct WeaponHand
-    {
-        public Sprite hand;
-        public Vector2 offset;
-    }
-
-    public List<WeaponHand> hands;
-    
     public Projectile projectile;
 
-    public virtual void Use(Transform origin)
+    public override void Use(Transform caller)
     {
-        var pm = Instantiate(Resources.Load<GameObject>("Projectile"), origin.position, Quaternion.identity)
+        var pm = Instantiate(Resources.Load<GameObject>("Projectile"), caller.position, Quaternion.identity)
             .GetComponent<ProjectileManager>();
         pm.projectile = projectile;
     }

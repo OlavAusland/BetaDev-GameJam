@@ -17,8 +17,8 @@ public class PlayerCombat : MonoBehaviour
 
     [Space(20)] [Header("Range")] 
     [SerializeField] private KeyCode rangeAttack = KeyCode.Mouse0;
-    [SerializeField] private Weapon weapon;
-    public Weapon Weapon
+    [SerializeField] private Tool weapon;
+    public Tool Weapon
     {
         get { return weapon;}
         set

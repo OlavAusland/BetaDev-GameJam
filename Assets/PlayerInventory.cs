@@ -21,6 +21,9 @@ public class PlayerInventory : MonoBehaviour
            SelectItem(3);
        else if(Input.GetKeyDown(KeyCode.Alpha5)) 
            SelectItem(4);
+       
+       if(Input.GetKeyDown(KeyCode.E))
+           PickupItem();
     }
     
     private void SelectItem(int index)
@@ -35,17 +38,38 @@ public class PlayerInventory : MonoBehaviour
                 (itemSlot.Item as Consumable)?.Use(pm);
                 itemSlot.Item = null;
                 break;
+            case ItemType.Tool:
             case ItemType.Weapon:
-                var weapon = ((Weapon)itemSlot.Item);
-                if (pm.pc.Weapon == (weapon))
+                var tool = ((Tool)itemSlot.Item);
+                if (pm.pc.Weapon == (tool))
                 {
                     pm.pc.Weapon = null;
                     break;
                 }
-                pm.pc.Weapon = ((Weapon)itemSlot.Item);
+                pm.pc.Weapon = tool;
                 break;
             default:
                 break;
+        }
+    }
+
+    private void PickupItem()
+    {
+        var ray = pm.cam.ScreenToWorldPoint(Input.mousePosition);
+        var hit = Physics2D.Raycast(ray, Vector2.zero);
+
+        if (!hit){ return; }
+
+        if (hit.transform.CompareTag("Item"))
+        {
+            foreach (var slot in items)
+            {
+                if (slot.Item != null){ continue; }
+
+                slot.Item = hit.transform.GetComponent<ItemInformation>().item;
+                Destroy(hit.transform.gameObject);
+                return;
+            }
         }
     }
 }
