@@ -18,7 +18,9 @@ public class ProjectileManager : MonoBehaviour
     {
         if (col.CompareTag("Enemy"))
         {
-            col.GetComponent<Pesant>().Health -= (int)projectile.damage;
+            var pesant = col.GetComponent<Pesant>();
+            if (pesant == null) { return;}
+            pesant.Health -= (int)projectile.damage;
             projectile.OnHit(transform.transform, col.transform);
         }
     }
