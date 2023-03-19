@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28352fe7fb3234d42a151a1c64280f01, type: 3}
+  m_Name: ChainCannon
+  m_EditorClassIdentifier: 
+  name: Chain Cannon
+  icon: {fileID: 21300000, guid: fe4dbef7ff47d5446a0b716ce7e7d889, type: 3}
+  type: 0
+  hands:
+  - hand: {fileID: -591695575, guid: 21ea1729674d86243ae4db0c5e4ac4aa, type: 3}
+    offset: {x: 0, y: 0}
+  prefab: {fileID: 2348258961365619333, guid: 86f8cef4c24be664caab133764823750, type: 3}
+  canShoot: 1
+  cooldown: 0

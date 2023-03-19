@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GrapplingHook : MonoBehaviour
-{
+{ 
     [SerializeField] private LineRenderer lr;
 
     private void Start()

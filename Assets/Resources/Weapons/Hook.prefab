@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4055503193465144783}
   - component: {fileID: 1094295534431066768}
   - component: {fileID: 9194051146548311808}
-  - component: {fileID: -8748953821186817845}
   - component: {fileID: 4018414936619580954}
+  - component: {fileID: 6090527928357266626}
   m_Layer: 0
   m_Name: Hook
   m_TagString: Untagged
@@ -208,22 +208,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!58 &-8748953821186817845
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8459463714515403880}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.08}
-  serializedVersion: 2
-  m_Radius: 0.12
 --- !u!114 &4018414936619580954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,7 +220,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb5e840b88f50f64d9ad903cf5efad47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hook: {fileID: 0}
   caller: {fileID: 0}
   rb: {fileID: 1094295534431066768}
   lr: {fileID: 9194051146548311808}
   isHooked: 0
+  retract: 0
+  retractSpeed: 10
+--- !u!61 &6090527928357266626
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8459463714515403880}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0017640591, y: 0.2815029}
+  m_SpriteTilingProperty:
+    border: {x: 0.14, y: 0.14, z: 0.14, w: 0.14}
+    pivot: {x: 0.5, y: 0.22}
+    oldSize: {x: 0.64, y: 0.64}
+    newSize: {x: 0.64, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.34014654, y: 0.13906819}
+  m_EdgeRadius: 0
